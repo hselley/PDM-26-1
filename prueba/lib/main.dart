@@ -109,7 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
-            Text("Hello world")
+            Text("Hello world"),
+            Image.asset('assets/LogoAndroid.png'),
+
           ],
         ),
       ),
