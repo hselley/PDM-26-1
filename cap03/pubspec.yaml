@@ -58,7 +58,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/LogoAndroid.png
+    - assets/galaxy.jpg   # Mario Galaxy
+    - assets/gow.jpg      # Gears of War
+    - assets/lou.png      # Last of Us
+    - assets/sonic.png    # Sonic Adventure
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
