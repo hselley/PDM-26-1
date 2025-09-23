@@ -1,0 +1,58 @@
+// App06Main.dart
+
+import 'package:flutter/material.dart';
+import 'App0602.dart';
+
+void main() => runApp(App06Main());
+
+class App06Main extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: _MyHomePage(),
+    );
+  }
+}
+
+class _MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.grey[400],
+      child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+          ),
+          child: buildColumn(context),
+      ),
+    );
+  }
+}
+
+Widget buildTitleText() {
+  return Text(
+    "My Pet Shop",
+    textAlign: TextAlign.center,
+    textScaler: TextScaler.linear(3.0),
+  );
+}
+
+Widget buildRoundedBox(String label, {double height = 88.0}) {
+  return Container(
+    height: height,
+    width: 88.0,
+    alignment: Alignment(-0.5, 0.5),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      border: Border.all(color: Colors.black),
+      borderRadius: BorderRadius.all(
+        Radius.circular(10.0),
+      ),
+    ),
+    child: Text(
+        label,
+        textAlign: TextAlign.center,
+        textScaler: TextScaler.linear(1.5),
+    ),
+  );
+}
