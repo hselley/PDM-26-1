@@ -1,7 +1,7 @@
 // App06Main.dart
 
 import 'package:flutter/material.dart';
-import 'App0602.dart';
+import 'App0608.dart';
 
 void main() => runApp(App06Main());
 
@@ -41,7 +41,7 @@ Widget buildRoundedBox(String label, {double height = 88.0}) {
   return Container(
     height: height,
     width: 88.0,
-    alignment: Alignment(-0.5, 0.5),
+    alignment: Alignment(0,-0.5),
     decoration: BoxDecoration(
       color: Colors.white,
       border: Border.all(color: Colors.black),
