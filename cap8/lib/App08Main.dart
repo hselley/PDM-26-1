@@ -2,7 +2,7 @@
 // Aplicación de reseña de películas
 
 import 'package:flutter/material.dart';
-import 'App0805.dart';
+import 'App0807.dart';
 
 void main() => runApp(App08Main());
 
