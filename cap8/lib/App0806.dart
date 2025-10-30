@@ -13,9 +13,9 @@ class App0806 extends StatelessWidget {
         "/": (context) => MovieTitlePage(),
         "/details": (context) => DetailPage(),
         "/details/cast": (context) => CastPage(),
-        "/detail/reviews": (context) => ReviewsPage(),
+        "/details/reviews": (context) => ReviewsPage(),
       },
-      initialRoute: '/details/reviews',
+      initialRoute: '/',
     );
   }
 }
