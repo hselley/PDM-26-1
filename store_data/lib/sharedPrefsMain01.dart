@@ -1,4 +1,4 @@
-// sharedPreferences01.dart
+// sharedPrefsMain01.dart
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +23,6 @@ class SharedPreferencesDemo extends StatefulWidget {
 }
 
 class _SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
-  // Variables de estado
   String _nombre = '';
   int _edad = 0;
   bool _notificaciones = true;
@@ -34,7 +33,7 @@ class _SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
     _loadData();
   }
 
-  // Carga de los datos
+  // Cargar datos
   _loadData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -44,7 +43,7 @@ class _SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
     });
   }
 
-  // Guardar los datos
+  // Guardar datos
   _saveData() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('nombre', _nombre);
@@ -55,7 +54,7 @@ class _SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Shared Preferences'),),
+      appBar: AppBar(title: Text('Shared Preferences')),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -64,29 +63,29 @@ class _SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
               decoration: InputDecoration(labelText: 'Nombre'),
               onChanged: (value) => setState(() => _nombre = value),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             TextField(
               decoration: InputDecoration(labelText: 'Edad'),
               keyboardType: TextInputType.number,
               onChanged: (value) => setState(() => _edad = int.tryParse(value) ?? 0),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             SwitchListTile(
-                title: Text('Notificaciones'),
-                value: _notificaciones,
-                onChanged: (value) => setState(() => _notificaciones = value),
+              title: Text('Notificaciones'),
+              value: _notificaciones,
+              onChanged: (value) => setState(() => _notificaciones = value),
             ),
-            SizedBox(height: 30,),
+            SizedBox(height: 20),
             ElevatedButton(
-                onPressed: () {
-                  _saveData();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Datos guardados')),
-                  );
-                },
-                child: Text('Guardar')
+              onPressed: () {
+                _saveData();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Datos guardados')),
+                );
+              },
+              child: Text('Guardar'),
             ),
-            SizedBox(height: 35,),
+            SizedBox(height: 20),
             Text('Datos guardados:'),
             Text('Nombre: $_nombre'),
             Text('Edad: $_edad'),
@@ -96,6 +95,4 @@ class _SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
       ),
     );
   }
-
-
 }

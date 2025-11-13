@@ -1,10 +1,8 @@
-// FileSystemMain.dart
-
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
-// Ubicacion del archivo: /data/data/com.example.store_data/app_flutter/miArchivo.txt
+// En este ejemplo, se guarda el archivo en la ruta: /data/data/com.example.store_data/app_flutter/miarchivo.txt
 
 void main() {
   runApp(MyApp());
@@ -14,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'File system demo',
+      title: 'File System Demo',
       home: FileSystemDemo(),
     );
   }
@@ -26,7 +24,6 @@ class FileSystemDemo extends StatefulWidget {
 }
 
 class _FileSystemDemoState extends State<FileSystemDemo> {
-  // Variables de estado
   String _contenidoArchivo = '';
   final TextEditingController _textoController = TextEditingController();
 
@@ -38,9 +35,9 @@ class _FileSystemDemoState extends State<FileSystemDemo> {
 
   _crearArchivo() async {
     final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/miArchivo.txt');
+    final file = File('${directory.path}/miarchivo.txt');
 
-    await file.writeAsString('Este es un archivo creado por Flutter\n');
+    await file.writeAsString('Hola, este es un archivo de texto creado por Flutter\n');
     await file.writeAsString('Segunda línea del archivo\n', mode: FileMode.append);
 
     setState(() async {
@@ -51,9 +48,9 @@ class _FileSystemDemoState extends State<FileSystemDemo> {
   _leerArchivo() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/miArchivo.txt');
+      final file = File('${directory.path}/miarchivo.txt');
 
-      if(await file.exists()) {
+      if (await file.exists()) {
         String contenido = await file.readAsString();
         setState(() {
           _contenidoArchivo = contenido;
@@ -63,17 +60,17 @@ class _FileSystemDemoState extends State<FileSystemDemo> {
           _contenidoArchivo = 'Archivo no encontrado';
         });
       }
-    } catch(e) {
+    } catch (e) {
       setState(() {
-        _contenidoArchivo = 'Error al leer el archivo $e';
+        _contenidoArchivo = 'Error al leer archivo: $e';
       });
     }
   }
 
-  _escribirArchivo() async {
-    if(_textoController.text.isNotEmpty) {
+  _escribirEnArchivo() async {
+    if (_textoController.text.isNotEmpty) {
       final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/miArchivo.txt');
+      final file = File('${directory.path}/miarchivo.txt');
 
       await file.writeAsString('${_textoController.text}\n', mode: FileMode.append);
 
@@ -85,17 +82,17 @@ class _FileSystemDemoState extends State<FileSystemDemo> {
   _borrarArchivo() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/miArchivo.txt');
+      final file = File('${directory.path}/miarchivo.txt');
 
-      if(await file.exists()) {
+      if (await file.exists()) {
         await file.delete();
         setState(() {
-          _contenidoArchivo = 'Archivo Borrado';
+          _contenidoArchivo = 'Archivo borrado';
         });
       }
-    } catch(e) {
+    } catch (e) {
       setState(() {
-        _contenidoArchivo = 'Error al borrar el archivo $e';
+        _contenidoArchivo = 'Error al borrar archivo: $e';
       });
     }
   }
@@ -128,7 +125,7 @@ class _FileSystemDemoState extends State<FileSystemDemo> {
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: _escribirArchivo,
+              onPressed: _escribirEnArchivo,
               child: Text('Escribir en archivo'),
             ),
             SizedBox(height: 20),
@@ -152,5 +149,4 @@ class _FileSystemDemoState extends State<FileSystemDemo> {
       ),
     );
   }
-
 }

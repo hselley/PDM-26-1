@@ -1,5 +1,3 @@
-// hiveMain.dart
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -26,7 +24,6 @@ class HiveDemo extends StatefulWidget {
 }
 
 class _HiveDemoState extends State<HiveDemo> {
-  // Constantes de estado
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
@@ -36,7 +33,7 @@ class _HiveDemoState extends State<HiveDemo> {
   }
 
   _addUsuario() {
-    if(_nombreController.text.isNotEmpty && _emailController.text.isNotEmpty) {
+    if (_nombreController.text.isNotEmpty && _emailController.text.isNotEmpty) {
       final box = Hive.box('usuarios');
       box.add({
         'nombre': _nombreController.text,
@@ -45,14 +42,14 @@ class _HiveDemoState extends State<HiveDemo> {
       });
       _nombreController.clear();
       _emailController.clear();
-      setState(() {});
+      setState(() {}); // Refrescar la lista
     }
   }
 
   _deleteUsuario(int index) {
     final box = Hive.box('usuarios');
     box.deleteAt(index);
-    setState(() {});
+    setState(() {}); // Refrescar la lista
   }
 
   @override
@@ -61,7 +58,7 @@ class _HiveDemoState extends State<HiveDemo> {
     List<dynamic> usuarios = box.values.toList();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Hive Demo'),),
+      appBar: AppBar(title: Text('Hive Demo')),
       body: Column(
         children: [
           Padding(
@@ -69,23 +66,23 @@ class _HiveDemoState extends State<HiveDemo> {
             child: Row(
               children: [
                 Expanded(
-                    child: TextField(
-                      controller: _nombreController,
-                      decoration: InputDecoration(labelText: 'Nombre'),
-                    ),
+                  child: TextField(
+                    controller: _nombreController,
+                    decoration: InputDecoration(labelText: 'Nombre'),
+                  ),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(width: 10),
                 Expanded(
-                    child: TextField(
-                      controller: _emailController,
-                      decoration: InputDecoration(labelText: 'Email'),
-                    ) ,
+                  child: TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(labelText: 'Email'),
+                  ),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: _addUsuario,
-                  child: Text('Agregar')
-                )
+                  child: Text('Agregar'),
+                ),
               ],
             ),
           ),
@@ -98,16 +95,15 @@ class _HiveDemoState extends State<HiveDemo> {
                   title: Text(usuario['nombre']),
                   subtitle: Text('${usuario['email']} - ${usuario['fecha']}'),
                   trailing: IconButton(
-                      onPressed: () => _deleteUsuario(index),
-                      icon: Icon(Icons.delete_outlined)
+                    icon: Icon(Icons.delete),
+                    onPressed: () => _deleteUsuario(index),
                   ),
                 );
-              }
-            )
-          )
+              },
+            ),
+          ),
         ],
       ),
     );
   }
-
 }

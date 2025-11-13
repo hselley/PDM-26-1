@@ -1,4 +1,4 @@
-package com.example.sotre_data
+package com.example.store_data
 
 import io.flutter.embedding.android.FlutterActivity
 

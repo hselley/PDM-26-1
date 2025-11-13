@@ -1,6 +1,6 @@
 {
-    "name": "sotre_data",
-    "short_name": "sotre_data",
+    "name": "store_data",
+    "short_name": "store_data",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
