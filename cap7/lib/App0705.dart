@@ -1,6 +1,6 @@
 // Appp0705.dart
 
-import 'package:cap7/App0701.dart';
+import 'App0701.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(App0705());
@@ -35,7 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             _buildGenderRadio(),
-            _buildResultArea()
+            _buildResultArea(),
+            if (_messageToUser.isNotEmpty) ...[
+              SizedBox(height: 16),
+              Text(_messageToUser),
+            ],
           ],
         ),
       ),
@@ -43,20 +47,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildGenderRadio() {
-    return Row(
-      children: [
-        Text("Female"),
-        Radio(value: Gender.Female, groupValue: _genderRadioValue, onChanged: _updateGenderRadio,),
-        SizedBox(width: 25,),
-        Text("Male"),
-        Radio(value: Gender.Male, groupValue: _genderRadioValue, onChanged: _updateGenderRadio,),
-        SizedBox(width: 25,),
-        Text("Other"),
-        Radio(value: Gender.Other, groupValue: _genderRadioValue, onChanged: _updateGenderRadio,),
-        SizedBox(width: 25,),
-      ],
+    return RadioGroup<Gender>(
+        groupValue: _genderRadioValue,
+        onChanged: _updateGenderRadio,
+        child: Row(
+          children: [
+            Text("Female"),
+            Radio<Gender>(value: Gender.Female),
+            SizedBox(width: 25),
+            Text("Male"),
+            Radio<Gender>(value: Gender.Male),
+            SizedBox(width: 25),
+            Text("Other"),
+            Radio<Gender>(value: Gender.Other),
+            SizedBox(width: 25),
+          ],
+        )
     );
   }
+
 
   Widget _buildResultArea() {
     return Row(
